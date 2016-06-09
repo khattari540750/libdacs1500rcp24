@@ -8,6 +8,10 @@ int main(void)
 
 	dio.open();
 
+	dio.ledOn();
+	sleep(2);
+	dio.ledOff();
+	sleep(1);
 
 	dio.close();
 

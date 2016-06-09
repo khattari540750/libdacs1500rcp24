@@ -29,6 +29,21 @@ void Dio::close() {
 }
 
 
+void Dio::ledOn() {
+  static char result[9];
+  strcpy(result, "W0800000");
+  result[8] = 0x0D;
+  sendCommandToDio(result);
+}
+
+
+void Dio::LedOff() {
+  static char result[9];
+  strcpy(result, "W0000000");
+  result[8] = 0x0D;
+  sendCommandToDio(result);
+}
+
 
 void Dio::sendCommandToDio(char* data)
 {

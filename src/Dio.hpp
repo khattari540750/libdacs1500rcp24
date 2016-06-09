@@ -15,6 +15,8 @@ public:
   void open();
   void close();
 
+  void ledOn();
+  void ledOff();
   void sendCommandToDio(char* data);
   //char* getPWMInitializeCommand();
   char* getPWMStartCommand();
