@@ -21,7 +21,6 @@ char *toCommandCode(unsigned int);
 void connectCommandCode(char*, char*);
 char *toHex(unsigned int);
 
-FT_HANDLE ftHandle;
-FT_STATUS ftStatus;
+
 
 #endif

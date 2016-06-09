@@ -1,8 +1,10 @@
-#include "dacs1500rcp24.h"
+//#include "dacs1500rcp24.h"
+#include "Dio.h"
 #include <unistd.h>
 
 int main(void)
 {
+	/*
 	char *code;
 
 	initDio();
@@ -33,4 +35,5 @@ int main(void)
   }
 
 	exitDio();
+	*/
 }
