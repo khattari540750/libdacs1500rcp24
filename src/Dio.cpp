@@ -36,11 +36,16 @@ void Dio::close() {
 // void Dio::ledOff();
 // void Dio::sendCommandToDio(std::string command);
 // std::string Dio::getPWMInitializeCommand();
-// std::string Dio::getPWMStartCommand();
+
+
+std::string Dio::getPWMStartCommand() {
+  std::string result = "Q000F000&Q001F000 "
+  result[17] = 0x0D;
+  return result;
+}
 
 
 std::string Dio::toHex(unsigned int x) {
-
   std::string result = "      ";
   for (int i = 0; i < 6; i++) {
     if (x % 16 >= 10) {
@@ -51,21 +56,9 @@ std::string Dio::toHex(unsigned int x) {
     x = x / 16;
   }
   return result;
-
-
-
-
-  // static char result[6];
-  // for (int i = 0; i < 6; i++) {
-  //   if (x % 16 >= 10) {
-  //     result[5 - i] = (char)((int)'A' + (x % 16 - 10));
-  //   } else {
-  //     result[5 - i] = (char)((int)'0' + x % 16);
-  //   }
-  //   x = x / 16;
-  // }
-  // return result;
 }
+
+
 
 
 

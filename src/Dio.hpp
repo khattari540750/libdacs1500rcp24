@@ -17,7 +17,7 @@ public:
   // void ledOff();
   // void sendCommandToDio(std::string command);
   // std::string getPWMInitializeCommand();
-  // std::string getPWMStartCommand();
+  std::string getPWMStartCommand();
 
 private:
   std::string toHex(unsigned int x);
