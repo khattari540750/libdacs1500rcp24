@@ -6,6 +6,7 @@ void Dio::open() {
     if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
+    std::cout << "open dio device." << std::endl;
   }
   catch(const char* str) {
     FT_Close(ftHandle);
@@ -19,10 +20,11 @@ void Dio::close() {
   try {
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_Close(ftHandle) != FT_OK) throw("FT_Close Failed");
+    std::cout << "close dio device." << std::endl;
   }
   catch(const char* str) {
     std::cout << str << std::endl;
-    std::cout << "can't Connect dio device & failed normal termination" << std::endl;
+    std::cout << "can't close dio device normal termination." << std::endl;
   }
 }
 
