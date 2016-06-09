@@ -48,7 +48,7 @@ int main(void)
   for (i=0; i<10; i++) {
     sleep(1);
     if(i%2==0) code = getPWMPalseChangeCode(0,10);
-    else code = getPWMPalseChangeCode(0,50);
+    else code = getPWMPalseChangeCode(0,5);
   	printf("%s\n", code);
   	sendCommandCodeToDio(code);
   }
