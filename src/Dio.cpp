@@ -9,7 +9,7 @@ void Dio::open() {
   }
   catch(const char* str) {
     FT_Close(ftHandle);
-    std::cout << "can't open dio device." std::endl;
+    std::cout << "can't open dio device." << std::endl;
 		std::cout << str << std::endl;
 	}
 }
@@ -22,7 +22,7 @@ void Dio::close() {
   }
   catch(const char* str) {
     std::cout << str << std::endl;
-    std::cout << "can't Connect dio device & failed normal termination" std::endl;
+    std::cout << "can't Connect dio device & failed normal termination" << std::endl;
   }
 }
 
