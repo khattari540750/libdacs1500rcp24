@@ -7,6 +7,7 @@ int main(void)
 {
 	Dio dio;
 	char *command;
+	int values[2];
 
 	dio.open();
 
@@ -21,7 +22,10 @@ int main(void)
 	dio.sendCommandToDio(command);
 
 	//初期位置
-	dio.changePWMPalse(0, 1450);
+	values[0] = 1450;
+	values[1] = 1450;
+	dio.changePWMPalse(values);
+	//dio.changePWMPalse(0, 1450);
 
 	// start
 	command = dio.getPWMStartCommand();
@@ -31,9 +35,19 @@ int main(void)
 	// 位置変更
 	for (int i=0; i<10; i++) {
     sleep(1);
-    if(i%2==0) dio.changePWMPalse(0,2400);
-    else dio.changePWMPalse(0,500);
-  }
+    if(i%2==0) {
+			values[0] = 2400;
+			values[1] = 2400;
+			dio.changePWMPalse(values);
+			//dio.changePWMPalse(0,2400);
+		}
+    else {
+			values[0] = 500;
+			values[1] = 500;
+			dio.changePWMPalse(values);
+			//dio.changePWMPalse(0,500);
+		}
+	}
 
 
 	dio.close();
