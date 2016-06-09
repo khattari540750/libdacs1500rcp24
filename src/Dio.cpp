@@ -28,6 +28,14 @@ void Dio::close() {
   }
 }
 
+// PWM出力開始コマンドを作成する
+char* getPWMStartCommand() {
+  static char result[18];
+  strcpy(result, "Q000F000&Q001F000");
+  result[17] = 0x0D;
+  return result;
+}
+
 
 char* Dio::toHex(unsigned int x) {
   static char result[6];

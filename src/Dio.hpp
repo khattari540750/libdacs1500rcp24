@@ -17,7 +17,7 @@ public:
   void close();
 
 private:
-  //char *toHex(unsigned int x);
+  char* getPWMStartCommand();
   char* toHex(unsigned int x);
 
 private:
