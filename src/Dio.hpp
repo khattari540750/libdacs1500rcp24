@@ -3,6 +3,7 @@
 
 #include <string.h>
 #include <iostream>
+#include <stdlib.h>
 #include "ftd2xx.h"
 
 // #define PWM_OPCODE 'Q'
