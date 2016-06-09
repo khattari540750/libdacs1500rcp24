@@ -80,6 +80,8 @@ void Dio::changePWMPalse(int* data) {
   }
   bdata[c - 1] = 0x0D;
   sendCommandToDio(bdata);
+
+  free(bdata);
 }
 
 
