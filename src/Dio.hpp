@@ -15,7 +15,7 @@ public:
   // void clearReadMemory(int i);
   // void ledOn();
   // void ledOff();
-  // void sendCommandToDio(std::string command);
+  void sendCommandToDio(std::string command);
   // std::string getPWMInitializeCommand();
   std::string getPWMStartCommand();
 

@@ -34,7 +34,16 @@ void Dio::close() {
 // void Dio::clearReadMemory(int i);
 // void Dio::ledOn();
 // void Dio::ledOff();
-// void Dio::sendCommandToDio(std::string command);
+void Dio::sendCommandToDio(std::string command) {
+  DWORD BytesWriten = 0;
+  try {
+    if (FT_Write(ftHandle, command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+  }
+  catch(std::string str) {
+      std::cout << str << std::endl;
+      std::cout << "can't connect" << std::endl;
+  }
+}
 // std::string Dio::getPWMInitializeCommand();
 
 
