@@ -30,7 +30,7 @@ void Dio::close() {
 
 
 char* Dio::toHex(unsigned int x) {
-  staic char result[6];
+  static char result[6];
   for (int i = 0; i < 6; i++) {
     if (x % 16 >= 10) {
       result[5 - i] = (char)((int)'A' + (x % 16 - 10));
