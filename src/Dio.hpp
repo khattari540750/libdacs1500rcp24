@@ -1,8 +1,7 @@
 #ifndef __Dio__Dio__
 #define __Dio__Dio__
 
-//#include <stdio.h>
-//#include <string.h>
+#include <string.h>
 #include <iostream>
 #include "ftd2xx.h"
 
