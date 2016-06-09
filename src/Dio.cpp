@@ -98,19 +98,22 @@ void Dio::sendCommandToDio(char* data)
   }
 }
 
-/*
-char* getPWMInitializeCommand() {
+
+char* Dio::getPWMInitializeCommand() {
   int data = 0;
   static char result[18];
-  int clockCode = 7;
+  //int clockCode = 7;
+  //
+  // pwmPalsePeriod = 1000000 / PWM_PALSE_FREQUENCY;
+  // // 解像度が4096以内になるようにクロック周波数を設定
+  // while(pwmPalsePeriod * PWM_CLOCK_FREQUENCY_LIST[clockCode] / 1000 > 4096) {
+  //   clockCode--;
+  //   if (clockCode < 0) throw new Exception("指定したパルス幅には設定できません。");
+  // }
+  // pwmClockPeriod = 1000.0 / PWM_CLOCK_FREQUENCY_LIST[clockCode];
 
-  pwmPalsePeriod = 1000000 / PWM_PALSE_FREQUENCY;
-  // 解像度が4096以内になるようにクロック周波数を設定
-  while(pwmPalsePeriod * PWM_CLOCK_FREQUENCY_LIST[clockCode] / 1000 > 4096) {
-    clockCode--;
-    if (clockCode < 0) throw new Exception("指定したパルス幅には設定できません。");
-  }
-  pwmClockPeriod = 1000.0 / PWM_CLOCK_FREQUENCY_LIST[clockCode];
+
+  int clockCode = 3;
 
 
   // 23bit パルス周期およびクロック周波数の指定フラグ
@@ -120,13 +123,14 @@ char* getPWMInitializeCommand() {
   // 16bit チャンネルグループの指定
   data += 0 << 16;
   // 15～0bit パルス周期の指定
-  data += (int)(pwmPalsePeriod / pwmClockPeriod - 1);
+  //data += (int)(pwmPalsePeriod / pwmClockPeriod - 1);
+  data += (int)(20000);
 
   // コマンド文字列に変換しresultに追加する
-  result[0] = (byte)'Q';  // PWM出力識別コード
-  esult[1] = (byte)PWM_DEVICE_ID; // デバイスID指定
-  char[] hexcode = toHex(data); // コマンドの内容を16進数に変換
-  for (int i = 0; i < 6; i++) result[2 + i] = (byte)hexcode[i];  // 変換結果をコピー
+  result[0] = 'Q';  // PWM出力識別コード
+  result[1] = PWM_DEVICE_ID; // デバイスID指定
+  char* hexcode = toHex(data); // コマンドの内容を16進数に変換
+  for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];  // 変換結果をコピー
   result[8] = 0x0D;  // 区切りマーク
 
   // チャンネルグループを指定しなおす
@@ -141,7 +145,7 @@ char* getPWMInitializeCommand() {
 
   return result;
 }
-*/
+
 
 char* Dio::getPWMStartCommand() {
   static char result[18];

@@ -21,7 +21,7 @@ public:
   void ledOn();
   void ledOff();
   void sendCommandToDio(char* data);
-  //char* getPWMInitializeCommand();
+  char* getPWMInitializeCommand();
   char* getPWMStartCommand();
   char* toHex(unsigned int x);
 
