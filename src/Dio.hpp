@@ -19,7 +19,7 @@ public:
   // std::string getPWMInitializeCommand();
   // std::string getPWMStartCommand();
   // std::stting toHex(unsigned int x);
-}
+};
 
 #endif
 
