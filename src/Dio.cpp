@@ -1,6 +1,6 @@
 #include "Dio.hpp"
 
-char* Dio::toHex(unsigned int) {
+char* Dio::toHex(unsigned int x) {
   static char result[7];
 	int	i;
 
