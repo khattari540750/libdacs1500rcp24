@@ -39,8 +39,8 @@ void Dio::close() {
 
 
 std::string Dio::getPWMStartCommand() {
-  std::string result = "Q000F000&Q001F000 "
-  result[17] = (char)0x0D;
+  std::string result = "Q000F000&Q001F000 ";
+  result[17] = 0x0D;
   return result;
 }
 
