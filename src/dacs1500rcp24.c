@@ -156,6 +156,21 @@ char *getPWMPalseChangeCode(unsigned short ch, unsigned short percent)
 }
 
 
+// PWMのパルス幅を変更するコマンド文字列を取得する関数
+char *getPWMPalseChangeUsecCode(unsigned short ch, unsigned short usec)
+{
+	unsigned int data = 0;
+
+	// 19～12bit チャンネルの指定
+	data += (ch<12?0:1) << 16;
+	data += (ch%12) << 12;
+	// 0～11bit パルス幅の指定
+	data += usec;
+
+	return toCommandCode(data);
+}
+
+
 // コマンドの内容をコマンド文字列に変換する関数
 char *toCommandCode(unsigned int data)
 {
