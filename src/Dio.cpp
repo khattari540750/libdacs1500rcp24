@@ -53,6 +53,36 @@ void Dio::changePWMPalse(int ch, int percent) {
 }
 
 
+void Dio::ChangePWMPalse(int* data) {
+  char* bdata;
+  bdata = (char *)malloc( sizeof(char) * sizeof(data) );
+  int c = 0;
+  unsigned int a = 0;
+
+  for (int i = 0; i < sizeof(data); i++) {
+    a = 0;
+    a += (i < 12 ? 0 : 1) << 16;
+    a += (i % 12) << 12;
+
+    // 0～11bit パルス幅の指定
+    //a += (unsigned int)(data[i] * pwmPalsePeriod / pwmClockPeriod / 100);
+    a += data[i];
+    char* hex = toHex(a);
+    bdata[c++] = 'Q';
+    bdata[c++] = PWM_DEVICE_ID;
+    bdata[c++] = hex[0];
+    bdata[c++] = hex[1];
+    bdata[c++] = hex[2];
+    bdata[c++] = hex[3];
+    bdata[c++] = hex[4];
+    bdata[c++] = hex[5];
+    bdata[c++] = '&';
+  }
+  bdata[c - 1] = 0x0D;
+  sendCommandToDio(bdata);
+}
+
+
 void Dio::clearReadMemory(int i) {
   char* bdata;
   bdata = (char *)malloc( sizeof( char ) * i );

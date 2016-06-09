@@ -15,8 +15,8 @@ class Dio {
 public:
   void open();
   void close();
-
   void changePWMPalse(int ch, int percent);
+  void changePWMPalse(int* data);
   void clearReadMemory(int i);
   void ledOn();
   void ledOff();
