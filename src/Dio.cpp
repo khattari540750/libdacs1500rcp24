@@ -28,7 +28,7 @@ void Dio::close() {
   }
 }
 
-public void ChangePWMPalse(int ch, int percent) {
+void Dio::changePWMPalse(int ch, int percent) {
   static char bdata[9];
   int c = 0;
   unsigned int a = 0;
@@ -53,7 +53,7 @@ public void ChangePWMPalse(int ch, int percent) {
 
 
 
-void Dio::ClearReadMemory(int i) {
+void Dio::clearReadMemory(int i) {
   char* bdata;
   bdata = (char *)malloc( sizeof( char ) * i );
 
