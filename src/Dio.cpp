@@ -53,7 +53,7 @@ void Dio::changePWMPalse(int ch, int percent) {
 }
 
 
-void Dio::ChangePWMPalse(int* data) {
+void Dio::changePWMPalse(int* data) {
   char* bdata;
   bdata = (char *)malloc( sizeof(char) * sizeof(data) );
   int c = 0;
