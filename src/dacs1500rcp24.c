@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "ftd2xx.h"
 
 #define PWM_OPCODE 'Q'
@@ -32,7 +33,7 @@ int main(void)
 	printf("%s\n", code);
 	sendCommandCodeToDio(code);
 
-	// PWMパルス幅の変更
+	// PWMパルス幅の初期位置設定
 	code = getPWMPalseChangeCode(0,10);
 	printf("%s\n", code);
 	sendCommandCodeToDio(code);
@@ -41,6 +42,17 @@ int main(void)
 	code = getPWMStartCode();
 	printf("%s\n", code);
 	sendCommandCodeToDio(code);
+
+  // PWMパルス幅の変更 繰り返し
+  int i;
+  for (i=0; i<10; i++) {
+    sleep(1);
+    if(i%2~==0) code = getPWMPalseChangeCode(0,10);
+    else code = getPWMPalseChangeCode(0,50);
+  	printf("%s\n", code);
+  	sendCommandCodeToDio(code);
+  }
+
 
 	exitDio();
 
