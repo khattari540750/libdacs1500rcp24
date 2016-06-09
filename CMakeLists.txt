@@ -38,5 +38,5 @@ include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
 
-add_executable(test src/dacs1500rcp24.c)
+add_executable(test src/main.c src/dacs1500rcp24.c)
 target_link_libraries(test ftd2xx)
