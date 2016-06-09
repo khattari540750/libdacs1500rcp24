@@ -29,7 +29,7 @@ private:
   FT_HANDLE ftHandle;
   FT_STATUS ftStatus;
   int PWM_PALSE_FREQUENCY;
-  char PWM_DEVICE_ID;
+  //char PWM_DEVICE_ID;
   double pwmClockPeriod;
   int pwmPalsePeriod;
   int PWM_CLOCK_FREQUENCY_LIST[];
