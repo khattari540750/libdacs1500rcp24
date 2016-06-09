@@ -17,7 +17,8 @@ public:
   void close();
 
 private:
-  char *toHex(unsigned int x);
+  //char *toHex(unsigned int x);
+  char* toHex(unsigned int x);
 
 private:
   FT_HANDLE ftHandle;
