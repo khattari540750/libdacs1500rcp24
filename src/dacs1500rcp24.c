@@ -12,6 +12,7 @@ void initDio();
 void exitDio();
 void sendCommandCodeToDio(char*);
 char *getPWMPalseChangeCode(unsigned short, unsigned short);
+char *getPWMPalseChangeUsecCode(unsigned short, unsigned short);
 char *getPWMInitializeCode();
 char *getPWMStartCode();
 char *toCommandCode(unsigned int);
@@ -34,7 +35,7 @@ int main(void)
 	sendCommandCodeToDio(code);
 
 	// PWMパルス幅の初期位置設定
-	code = getPWMPalseChangeCode(0,10);
+	code = getPWMPalseChangeUsecCode(0,1450);
 	printf("%s\n", code);
 	sendCommandCodeToDio(code);
 
@@ -47,8 +48,8 @@ int main(void)
   int i;
   for (i=0; i<10; i++) {
     sleep(1);
-    if(i%2==0) code = getPWMPalseChangeCode(0,10);
-    else code = getPWMPalseChangeCode(0,5);
+    if(i%2==0) code = getPWMPalseChangeUsecCode(0,2400);
+    else code = getPWMPalseChangeUsecCode(0,500);
   	printf("%s\n", code);
   	sendCommandCodeToDio(code);
   }
