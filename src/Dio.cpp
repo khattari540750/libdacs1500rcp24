@@ -33,7 +33,9 @@ void Dio::close() {
 void Dio::sendCommandToDio(char* data)
 {
   DWORD BytesWriten = 0;
-  try if (FT_Write(ftHandle, data, strlen(data), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+  try {
+    if (FT_Write(ftHandle, data, strlen(data), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+  }
   catch(const char* str) {
       std::cout << str << std::endl;
       std::cout << "can't connect" << std::endl;
