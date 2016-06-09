@@ -15,6 +15,7 @@ public:
   void open();
   void close();
 
+  void ClearReadMemory(int i);
   void ledOn();
   void ledOff();
   void sendCommandToDio(char* data);

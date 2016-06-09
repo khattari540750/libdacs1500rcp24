@@ -29,6 +29,23 @@ void Dio::close() {
 }
 
 
+void Dio::ClearReadMemory(int i) {
+  char* bdata;
+  bdata = (char *)malloc( sizeof( char ) * i );
+
+  try {
+    DWORD resive = 0;
+    FT_Read(ftHandle, bdata, (DWORD)i, &resive) != FT_OK) throw("FT_Read Failed");
+  }
+  catch(const char* str) {
+    std::cout << str << std::endl;
+    std::cout << "can't ClearReadMemory." << std::endl;
+  }
+
+  free(bdata);
+}
+
+
 void Dio::ledOn() {
   static char result[9];
   strcpy(result, "W0800000");
