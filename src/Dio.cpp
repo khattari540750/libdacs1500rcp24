@@ -28,7 +28,20 @@ void Dio::close() {
   }
 }
 
+char[] Dio::toHex(unsigned int x) {
+  static char result[6];
+  for (int i = 0; i < 6; i++) {
+    if (x % 16 >= 10) {
+      result[5 - i] = (char)((int)'A' + (x % 16 - 10));
+    } else {
+      result[5 - i] = (char)((int)'0' + x % 16);
+    }
+    x = x / 16;
+  }
+  return result;
+}
 
+/*
 char* Dio::toHex(unsigned int x) {
   static char result[7];
 	int	i;
@@ -44,3 +57,4 @@ char* Dio::toHex(unsigned int x) {
 	}
 	return result;
 }
+*/
