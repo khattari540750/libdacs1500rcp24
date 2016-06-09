@@ -28,6 +28,7 @@ void Dio::close() {
   }
 }
 
+
 void Dio::changePWMPalse(int ch, int percent) {
   static char bdata[9];
   int c = 0;
@@ -50,7 +51,6 @@ void Dio::changePWMPalse(int ch, int percent) {
   bdata[c++] = 0x0D;
   sendCommandToDio(bdata);
 }
-
 
 
 void Dio::clearReadMemory(int i) {
