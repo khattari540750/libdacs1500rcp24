@@ -37,7 +37,7 @@ void Dio::ledOn() {
 }
 
 
-void Dio::LedOff() {
+void Dio::ledOff() {
   static char result[9];
   strcpy(result, "W0000000");
   result[8] = 0x0D;
