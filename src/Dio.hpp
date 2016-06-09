@@ -6,8 +6,6 @@
 #include <iostream>
 #include "ftd2xx.h"
 
-using namespace std;
-
 #define PWM_OPCODE 'Q'
 #define PWM_DEVICE_ID '0'
 #define PWM_CLOCK_PERIOD 1  // 8us 4us 2us 1us 0.5us 0.25us 0.125us 0.0625usの中から指定する
