@@ -1,5 +1,21 @@
 #include "Dio.hpp"
 
+
+void Dio::open() {
+  if (FT_Open(0, &ftHandle) == FT_OK) {
+    FT_ResetDevice( ftHandle );                     // デバイスリセット
+    FT_SetTimeouts( ftHandle, 1000, 1000 );         // タイムアウトの設定
+  } else {
+    cout << "Connect Failed" << endl;
+  }
+}
+
+
+void Dio::close() {
+  ftStatus = FT_Close(ftHandle);
+}
+
+
 char* Dio::toHex(unsigned int x) {
   static char result[7];
 	int	i;

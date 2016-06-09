@@ -1,8 +1,8 @@
 #ifndef __Dio__Dio__
 #define __Dio__Dio__
 
-#include <stdio.h>
-#include <string.h>
+//#include <stdio.h>
+//#include <string.h>
 #include "ftd2xx.h"
 
 #define PWM_OPCODE 'Q'
@@ -16,7 +16,7 @@ public:
   //void close();
 
 private:
-  char *toHex(unsigned int);
+  char *toHex(unsigned int x);
 
 private:
   FT_HANDLE ftHandle;

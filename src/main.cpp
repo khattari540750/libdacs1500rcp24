@@ -4,6 +4,14 @@
 
 int main(void)
 {
+	Dio dio;
+
+	dio.open();
+
+	dio.close();
+
+	return 0;
+
 	/*
 	char *code;
 
