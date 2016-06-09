@@ -1,6 +1,37 @@
 #ifndef __Dio__Dio__
 #define __Dio__Dio__
 
+#include <iostream>
+#include <string>
+#include "ftd2xx.h"
+
+
+class Dio {
+public:
+  void open();
+  void close();
+  // void changePWMPalse(int ch, int usec);
+  // void changePWMPalse(vector<int> usecList);
+  // void clearReadMemory(int i);
+  // void ledOn();
+  // void ledOff();
+  // void sendCommandToDio(std::string command);
+  // std::string getPWMInitializeCommand();
+  // std::string getPWMStartCommand();
+  // std::stting toHex(unsigned int x);
+}
+
+#endif
+
+
+
+
+
+
+
+
+
+/*
 #include <string.h>
 #include <iostream>
 #include <stdlib.h>
@@ -34,5 +65,4 @@ private:
   int pwmPalsePeriod;
   int PWM_CLOCK_FREQUENCY_LIST[];
 };
-
-#endif
+*/

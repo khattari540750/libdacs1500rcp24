@@ -3,8 +3,23 @@
 #include <unistd.h>
 #include <iostream>
 
+
 int main(void)
 {
+	Dio dio;
+
+	dio.open();
+
+	dio.close();
+
+	return 0;
+
+
+
+
+
+
+	/*
 	Dio dio;
 	char *command;
 	int values[2];
@@ -53,6 +68,13 @@ int main(void)
 	dio.close();
 
 	return 0;
+	*/
+
+
+
+
+
+
 
 	/*
 	char *code;

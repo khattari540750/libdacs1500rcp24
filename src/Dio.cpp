@@ -1,6 +1,55 @@
 #include "Dio.hpp"
 
 
+
+void Dio::open() {
+  try {
+    if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
+    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
+    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
+    std::cout << "open dio device." << std::endl;
+  }
+  catch(std::string str) {
+    FT_Close(ftHandle);
+    std::cout << "can't open dio device." << std::endl;
+    std::cout << str << std::endl;
+  }
+}
+
+
+void Dio::close() {
+  try {
+    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
+    if(FT_Close(ftHandle) != FT_OK) throw("FT_Close Failed");
+    std::cout << "close dio device." << std::endl;
+  }
+  catch(std::string str) {
+    std::cout << str << std::endl;
+    std::cout << "can't close dio device normal termination." << std::endl;
+  }
+}
+
+
+// void Dio::changePWMPalse(int ch, int usec);
+// void Dio::changePWMPalse(vector<int> usecList);
+// void Dio::clearReadMemory(int i);
+// void Dio::ledOn();
+// void Dio::ledOff();
+// void Dio::sendCommandToDio(std::string command);
+// std::string Dio::getPWMInitializeCommand();
+// std::string Dio::getPWMStartCommand();
+// std::stting Dio::toHex(unsigned int x);
+
+
+
+
+
+
+
+
+
+
+/*
 void Dio::open() {
   try {
     if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
@@ -199,3 +248,4 @@ char* Dio::toHex(unsigned int x) {
   }
   return result;
 }
+*/
