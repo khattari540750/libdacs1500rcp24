@@ -12,8 +12,8 @@
 
 class Dio {
 public:
-  //void open();
-  //void close();
+  void open();
+  void close();
 
 private:
   char *toHex(unsigned int x);
