@@ -35,7 +35,7 @@ void Dio::ClearReadMemory(int i) {
 
   try {
     DWORD resive = 0;
-    FT_Read(ftHandle, bdata, (DWORD)i, &resive) != FT_OK) throw("FT_Read Failed");
+    if(FT_Read(ftHandle, bdata, (DWORD)i, &resive) != FT_OK) throw("FT_Read Failed");
   }
   catch(const char* str) {
     std::cout << str << std::endl;
