@@ -1,7 +1,6 @@
 #include "Dio.hpp"
 
 
-
 void Dio::open() {
   try {
     if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
@@ -38,7 +37,35 @@ void Dio::close() {
 // void Dio::sendCommandToDio(std::string command);
 // std::string Dio::getPWMInitializeCommand();
 // std::string Dio::getPWMStartCommand();
-// std::stting Dio::toHex(unsigned int x);
+
+
+std::string Dio::toHex(unsigned int x) {
+
+  std::string result = "      ";
+  for (int i = 0; i < 6; i++) {
+    if (x % 16 >= 10) {
+      result[5 - i] = (char)((int)'A' + (x % 16 - 10));
+    } else {
+      result[5 - i] = (char)((int)'0' + x % 16);
+    }
+    x = x / 16;
+  }
+  return result;
+
+
+
+
+  // static char result[6];
+  // for (int i = 0; i < 6; i++) {
+  //   if (x % 16 >= 10) {
+  //     result[5 - i] = (char)((int)'A' + (x % 16 - 10));
+  //   } else {
+  //     result[5 - i] = (char)((int)'0' + x % 16);
+  //   }
+  //   x = x / 16;
+  // }
+  // return result;
+}
 
 
 

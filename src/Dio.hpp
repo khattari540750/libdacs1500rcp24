@@ -18,7 +18,9 @@ public:
   // void sendCommandToDio(std::string command);
   // std::string getPWMInitializeCommand();
   // std::string getPWMStartCommand();
-  // std::stting toHex(unsigned int x);
+
+private:
+  std::string toHex(unsigned int x);
 
 private:
   FT_HANDLE ftHandle;
