@@ -28,6 +28,30 @@ void Dio::close() {
   }
 }
 
+public void ChangePWMPalse(int ch, int percent) {
+  static char bdata[9];
+  int c = 0;
+  unsigned int a = 0;
+
+  a += (ch < 12 ? 0 : 1) << 16;
+  a += (ch % 12) << 12;
+
+  //a += (unsigned int)(percent * pwmPalsePeriod / pwmClockPeriod / 100);
+  a += (unsigned int)(percent);
+  char[] hex = toHex(a);
+  bdata[c++] = 'Q';
+  bdata[c++] = PWM_DEVICE_ID;
+  bdata[c++] = hex[0];
+  bdata[c++] = hex[1];
+  bdata[c++] = hex[2];
+  bdata[c++] = hex[3];
+  bdata[c++] = hex[4];
+  bdata[c++] = hex[5];
+  bdata[c++] = 0x0D;
+  sendCommandToDio(bdata);
+}
+
+
 
 void Dio::ClearReadMemory(int i) {
   char* bdata;
