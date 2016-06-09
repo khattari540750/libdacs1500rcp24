@@ -38,7 +38,7 @@ void Dio::changePWMPalse(int ch, int percent) {
 
   //a += (unsigned int)(percent * pwmPalsePeriod / pwmClockPeriod / 100);
   a += (unsigned int)(percent);
-  char[] hex = toHex(a);
+  char* hex = toHex(a);
   bdata[c++] = 'Q';
   bdata[c++] = PWM_DEVICE_ID;
   bdata[c++] = hex[0];
