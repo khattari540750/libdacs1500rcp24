@@ -1,5 +1,5 @@
 //#include "dacs1500rcp24.h"
-#include "Dio.h"
+#include "Dio.hpp"
 #include <unistd.h>
 
 int main(void)
