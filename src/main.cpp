@@ -20,7 +20,7 @@ int main(void)
 	// pwm init pos
 	values.push_back(1450);
 	values.push_back(1450);
-	dio.changePWMPalse(values);
+	dio.getPWMPalseChangeCommand(values);
 	//dio.changePWMPalse(0, 1450);
 
 	// start
@@ -33,13 +33,13 @@ int main(void)
     if(i%2==0) {
 			values[0] = 2400;
 			values[1] = 2400;
-			dio.changePWMPalse(values);
+			dio.getPWMPalseChangeCommand(values);
 			//dio.changePWMPalse(0,2400);
 		}
     else {
 			values[0] = 500;
 			values[1] = 500;
-			dio.changePWMPalse(values);
+			dio.getPWMPalseChangeCommand(values);
 			//dio.changePWMPalse(0,500);
 		}
 	}
