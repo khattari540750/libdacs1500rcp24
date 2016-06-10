@@ -2,15 +2,18 @@
 
 
 Dacs1500rcp24::Dacs1500rcp24() {
-  deviceID = '0';
+  charDeviceID = '0';
+  intDeviceID = 0;
 }
 
 
 Dacs1500rcp24::Dacs1500rcp24(int deviceID) {
+  intDeviceID = deviceID;
+
   std::stringstream ss;
   ss << deviceID;
   std::string str = ss.str();
-  deviceID = str[0];
+  charDeviceID = str[0];
 }
 
 
@@ -19,11 +22,7 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 void Dacs1500rcp24::open() {
   try {
-    // int devID;
-    // std::string str = deviceID;
-    // std::istringstream is(str);
-    // is >> devID;
-    if(FT_Open((int)deviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
+    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
     std::cout << "open dacs1500rcp24 device." << std::endl;
@@ -59,7 +58,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   data += pwmPalsePeriod;
 
   result[0] = 'Q';
-  result[1] = deviceID;
+  result[1] = charDeviceID;
   std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
   result[8] = 0x0D;
@@ -67,7 +66,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   data = (data | (1 << 16));
 
   result[9] = 'Q';
-  result[10] = deviceID;
+  result[10] = charDeviceID;
   hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
   result[17] = 0x0D;
@@ -78,7 +77,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
 
 std::string Dacs1500rcp24::getPWMStartCommand() {
   std::string result = "Q 00F000&Q001F000 ";
-  result[1] = deviceID;
+  result[1] = charDeviceID;
   result[17] = 0x0D;
   return result;
 }
@@ -86,7 +85,7 @@ std::string Dacs1500rcp24::getPWMStartCommand() {
 
 std::string Dacs1500rcp24::getPWMStopCommand() {
   std::string result = "Q 00F000&Q001F000 ";
-  result[1] = deviceID;
+  result[1] = charDeviceID;
   result[17] = 0x0D;
   return result;
 }
@@ -101,7 +100,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
   a += (unsigned int)(usec);
   std::string hex = toHex(a);
   result[c++] = 'Q';
-  result[c++] = deviceID;
+  result[c++] = charDeviceID;
   result[c++] = hex[0];
   result[c++] = hex[1];
   result[c++] = hex[2];
@@ -124,7 +123,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
     a += usecList[i];
     std::string hex = toHex(a);
     result[c++] = 'Q';
-    result[c++] = deviceID;
+    result[c++] = charDeviceID;
     result[c++] = hex[0];
     result[c++] = hex[1];
     result[c++] = hex[2];

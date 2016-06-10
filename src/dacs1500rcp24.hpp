@@ -31,7 +31,8 @@ private:
 
 protected:
   FT_HANDLE ftHandle;
-  char deviceID;
+  char charDeviceID;
+  int  intDeviceID;
 };
 
 
