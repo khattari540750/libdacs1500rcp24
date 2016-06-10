@@ -20,7 +20,7 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 void Dacs1500rcp24::open() {
   try {
     int devID;
-    std::string str(deviceID);
+    std::string str = deviceID;
     std::istringstream is(str);
     is >> devID;
     if(FT_Open(devID, &ftHandle) != FT_OK) throw("FT_Open Failed");
