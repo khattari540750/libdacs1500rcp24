@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+/*
 #include "dacs1500rcp24.h"
 
 // デジタル入出力ボードとの通信を初期化
@@ -161,3 +172,4 @@ char *toHex(unsigned int x)
 	}
 	return result;
 }
+*/

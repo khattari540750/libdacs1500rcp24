@@ -1,6 +1,13 @@
 #ifndef __libdacs1500rcp24__dacs1500rcp24__
 #define __libdacs1500rcp24__dacs1500rcp24__
 
+#endif
+
+
+/*
+#ifndef __libdacs1500rcp24__dacs1500rcp24__
+#define __libdacs1500rcp24__dacs1500rcp24__
+
 #include <stdio.h>
 #include <string.h>
 #include "ftd2xx.h"
@@ -24,3 +31,4 @@ char *toHex(unsigned int);
 
 
 #endif
+*/
