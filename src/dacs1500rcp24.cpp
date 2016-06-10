@@ -19,9 +19,10 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 void Dacs1500rcp24::open() {
   try {
-    std::stringstream ss;
     int devID;
-    ss.str(deviceID) >> devID;
+    std::string str(deviceID);
+    std::istringstream is(str);
+    is >> devID;
     if(FT_Open(devID, &ftHandle) != FT_OK) throw("FT_Open Failed");
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
