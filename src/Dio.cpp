@@ -39,7 +39,28 @@ void Dio::close() {
 }
 
 
-//void Dio::changePWMPalse(int ch, int usec)
+void Dio::changePWMPalse(int ch, int usec) {
+  std::string bdata = "         ";
+  int c = 0;
+  unsigned int a = 0;
+
+  a += (ch < 12 ? 0 : 1) << 16;
+  a += (ch % 12) << 12;
+
+  //a += (unsigned int)(percent * pwmPalsePeriod / pwmClockPeriod / 100);
+  a += (unsigned int)(percent);
+  std::string hex = toHex(a);
+  bdata[c++] = 'Q';
+  bdata[c++] = PWM_DEVICE_ID;
+  bdata[c++] = hex[0];
+  bdata[c++] = hex[1];
+  bdata[c++] = hex[2];
+  bdata[c++] = hex[3];
+  bdata[c++] = hex[4];
+  bdata[c++] = hex[5];
+  bdata[c++] = 0x0D;
+  sendCommandToDio(bdata);
+}
 
 
 // void Dio::changePWMPalse(vector<int> usecList);
@@ -104,17 +125,14 @@ std::string Dio::getPWMInitializeCommand() {
   //data += (int)(pwmPalsePeriod / pwmClockPeriod - 1);
   data += (int)(20000);
 
-  // コマンド文字列に変換しresultに追加する
   result[0] = 'Q';
   result[1] = PWM_DEVICE_ID;
   std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
   result[8] = 0x0D;
 
-  // チャンネルグループを指定しなおす
   data = (data | (1 << 16));
 
-  // コマンド文字列に変換しresultに追加する
   result[9] = 'Q';
   result[10] = PWM_DEVICE_ID;
   hexcode = toHex(data);

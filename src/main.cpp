@@ -7,12 +7,36 @@
 int main(void)
 {
 	Dio dio;
+	std:: string command;
 
 	dio.open();
 
 	dio.ledOn();
 	sleep(2);
 	dio.ledOff();
+	sleep(1);
+
+	// 初期化
+	command = dio.getPWMInitializeCommand();
+	dio.sendCommandToDio(command);
+
+	//初期位置
+	dio.changePWMPalse(0, 1450);
+
+	// start
+	command = dio.getPWMStartCommand();
+	dio.sendCommandToDio(command);
+
+	// 位置変更
+	for (int i=0; i<10; i++) {
+    sleep(1);
+    if(i%2==0) {
+			dio.changePWMPalse(0,2400);
+		}
+    else {
+			dio.changePWMPalse(0,500);
+		}
+	}
 
 	dio.close();
 
