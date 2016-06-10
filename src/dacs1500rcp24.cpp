@@ -2,8 +2,9 @@
 
 
 void Dacs1500rcp24::open() {
+  pwmDeviceID = '0';
   try {
-    if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
+    if(FT_Open(std::stoi(pwmDeviceID), &ftHandle) != FT_OK) throw("FT_Open Failed");
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
     std::cout << "open dacs1500rcp24 device." << std::endl;

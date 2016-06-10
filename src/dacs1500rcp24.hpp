@@ -14,8 +14,6 @@ public:
   void close();
   std::string getChangePWMPalseCommand(int ch, int usec);
   std::string getChangePWMPalseCommand(std::vector<int> usecList);
-
-protected:
   void sendCommandToDio(std::string command);
 
 private:
