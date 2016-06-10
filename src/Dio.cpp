@@ -73,7 +73,7 @@ void Dio::changePWMPalse(std::vector<int> usecList) {
     a += (i < 12 ? 0 : 1) << 16;
     a += (i % 12) << 12;
 
-    a += data[i];
+    a += usecList[i];
     std::string hex = toHex(a);
     bdata[c++] = 'Q';
     bdata[c++] = PWM_DEVICE_ID;
