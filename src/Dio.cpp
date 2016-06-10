@@ -64,7 +64,7 @@ void Dio::changePWMPalse(int ch, int usec) {
 
 
 void Dio::changePWMPalse(std::vector<int> usecList) {
-  std::string bdata;
+  std::string bdata(usecList.size()*9, ' ');
   int c = 0;
   unsigned int a = 0;
 
