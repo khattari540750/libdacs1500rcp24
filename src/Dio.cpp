@@ -36,7 +36,7 @@ void Dio::close() {
 // void Dio::ledOff();
 void Dio::sendCommandToDio(std::string command) {
   DWORD BytesWriten = 0;
-  char *tmp = command.c_str();
+  char *tmp = (char *)malloc( strlen(command.c_str()) + 1 );
   try {
     if (FT_Write(ftHandle, tmp,  strlen(tmp), &BytesWriten) != FT_OK) throw("FT_Write Failed");
   }
