@@ -19,6 +19,7 @@ public:
 
   std::string getPWMInitializeCommand(int pwmCountClockID, int pwmPalsePeriod);
   std::string getPWMStartCommand();
+  std::string getPWMStopCommand();
   std::string getPWMPalseChangeCommand(int ch, int usec);
   std::string getPWMPalseChangeCommand(std::vector<int> usecList);
 
