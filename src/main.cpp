@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	Dacs1500rcp24 dio;
+	Dacs1500rcp24 dio(0);
 	std::string command;
 	std::vector<int> values;
 
