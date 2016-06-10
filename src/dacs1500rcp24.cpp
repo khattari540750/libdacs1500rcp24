@@ -3,7 +3,7 @@
 
 Dacs1500rcp24::Dacs1500rcp24() {
   charDeviceID = '1';
-  intDeviceID = 1;
+  intDeviceID = 0;
 }
 
 
