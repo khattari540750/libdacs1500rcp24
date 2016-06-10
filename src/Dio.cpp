@@ -32,8 +32,20 @@ void Dio::close() {
 // void Dio::changePWMPalse(int ch, int usec);
 // void Dio::changePWMPalse(vector<int> usecList);
 // void Dio::clearReadMemory(int i);
-// void Dio::ledOn();
-// void Dio::ledOff();
+void Dio::ledOn() {
+  std::string result = "W0800000 ";
+  result[8] = 0x0D;
+  sendCommandToDio(result);
+}
+
+
+void Dio::ledOff() {
+  std::string result = "W0000000 ";
+  result[8] = 0x0D;
+  sendCommandToDio(result);
+}
+
+
 void Dio::sendCommandToDio(std::string command) {
   DWORD BytesWriten = 0;
   char *tmp = (char *)malloc( strlen(command.c_str()) + 1 );
@@ -67,6 +79,9 @@ std::string Dio::toHex(unsigned int x) {
   }
   return result;
 }
+
+
+
 
 
 

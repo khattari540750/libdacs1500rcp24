@@ -15,8 +15,8 @@ public:
   // void changePWMPalse(int ch, int usec);
   // void changePWMPalse(vector<int> usecList);
   // void clearReadMemory(int i);
-  // void ledOn();
-  // void ledOff();
+  void ledOn();
+  void ledOff();
   void sendCommandToDio(std::string command);
   // std::string getPWMInitializeCommand();
   std::string getPWMStartCommand();
@@ -29,6 +29,8 @@ private:
 };
 
 #endif
+
+
 
 
 
