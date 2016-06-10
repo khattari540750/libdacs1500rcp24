@@ -16,7 +16,7 @@ public:
   void open();
   void close();
   void changePWMPalse(int ch, int usec);
-  // void changePWMPalse(vector<int> usecList);
+  void changePWMPalse(vector<int> usecList);
   void clearReadMemory(int i);
   void ledOn();
   void ledOff();

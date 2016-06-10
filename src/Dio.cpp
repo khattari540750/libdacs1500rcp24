@@ -63,7 +63,33 @@ void Dio::changePWMPalse(int ch, int usec) {
 }
 
 
-// void Dio::changePWMPalse(vector<int> usecList);
+void Dio::changePWMPalse(vector<int> usecList) {
+  std::string bdata;
+  int c = 0;
+  unsigned int a = 0;
+
+  for (int i = 0; i < usecList.size(); i++) {
+    a = 0;
+    a += (i < 12 ? 0 : 1) << 16;
+    a += (i % 12) << 12;
+
+    a += data[i];
+    string hex = toHex(a);
+    bdata[c++] = 'Q';
+    bdata[c++] = PWM_DEVICE_ID;
+    bdata[c++] = hex[0];
+    bdata[c++] = hex[1];
+    bdata[c++] = hex[2];
+    bdata[c++] = hex[3];
+    bdata[c++] = hex[4];
+    bdata[c++] = hex[5];
+    bdata[c++] = '&';
+  }
+  bdata[c - 1] = 0x0D;
+  sendCommandToDio(bdata);
+
+
+}
 
 
 void Dio::clearReadMemory(int i)
