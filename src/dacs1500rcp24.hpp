@@ -24,6 +24,8 @@ public:
   std::string getPWMPalseChangeCommand(int ch, int usec);
   std::string getPWMPalseChangeCommand(std::vector<int> usecList);
 
+  std::string getDigitalOutPutCommand(std::string bitStrings);
+
   void sendCommandToDio(std::string command);
 
 private:

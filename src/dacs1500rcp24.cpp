@@ -137,6 +137,22 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
 }
 
 
+std::string Dacs1500rcp24::getDigitalOutPutCommand(std::string bitStrings) {
+  std::string result(9, ' ');
+  int c = 0;
+  result[c++] = 'W';
+  result[c++] = charDeviceID;
+  result[c++] = bitStrings[0];
+  result[c++] = bitStrings[1];
+  result[c++] = bitStrings[2];
+  result[c++] = bitStrings[3];
+  result[c++] = bitStrings[4];
+  result[c++] = bitStrings[5];
+  result[c++] = 0x0D;
+  return result;
+}
+
+
 void Dacs1500rcp24::sendCommandToDio(std::string command) {
   DWORD BytesWriten = 0;
   try {
