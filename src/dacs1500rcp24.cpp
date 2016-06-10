@@ -2,7 +2,7 @@
 
 
 Dacs1500rcp24::Dacs1500rcp24() {
-  pwmDeviceID = '0';
+  deviceID = '0';
 }
 
 
@@ -53,7 +53,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand() {
   data += pwmPalsePeriod;
 
   result[0] = 'Q';
-  result[1] = pwmDeviceID;
+  result[1] = deviceID;
   std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
   result[8] = 0x0D;
@@ -61,7 +61,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand() {
   data = (data | (1 << 16));
 
   result[9] = 'Q';
-  result[10] = pwmDeviceID;
+  result[10] = deviceID;
   hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
   result[17] = 0x0D;
@@ -79,7 +79,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
   a += (unsigned int)(usec);
   std::string hex = toHex(a);
   result[c++] = 'Q';
-  result[c++] = pwmDeviceID;
+  result[c++] = deviceID;
   result[c++] = hex[0];
   result[c++] = hex[1];
   result[c++] = hex[2];
@@ -102,7 +102,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
     a += usecList[i];
     std::string hex = toHex(a);
     result[c++] = 'Q';
-    result[c++] = pwmDeviceID;
+    result[c++] = deviceID;
     result[c++] = hex[0];
     result[c++] = hex[1];
     result[c++] = hex[2];
