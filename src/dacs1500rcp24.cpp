@@ -7,7 +7,10 @@ Dacs1500rcp24::Dacs1500rcp24() {
 
 
 Dacs1500rcp24::Dacs1500rcp24(int deviceID) {
-  deviceID = '0';
+  std::stringstream ss;
+  ss << deviceID;
+  string str = ss.str();
+  deviceID = str[0];
 }
 
 
@@ -79,6 +82,7 @@ std::string Dacs1500rcp24::getPWMStartCommand() {
 
 std::string Dacs1500rcp24::getPWMStopCommand() {
   std::string result = "Q000F000&Q001F000 ";
+  result[1] = deviceID;
   result[17] = 0x0D;
   return result;
 }
