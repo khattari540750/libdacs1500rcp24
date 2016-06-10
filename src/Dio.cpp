@@ -1,6 +1,16 @@
 #include "Dio.hpp"
 
 
+Dio::Dio() {
+  PWM_DEVICE_ID = '0';
+}
+
+
+Dio::~Dio() {
+
+}
+
+
 void Dio::open() {
   try {
     if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
@@ -29,9 +39,30 @@ void Dio::close() {
 }
 
 
-// void Dio::changePWMPalse(int ch, int usec);
+//void Dio::changePWMPalse(int ch, int usec)
+
+
 // void Dio::changePWMPalse(vector<int> usecList);
-// void Dio::clearReadMemory(int i);
+
+
+void Dio::clearReadMemory(int i)
+{
+  char* bdata;
+  bdata = (char *)malloc( sizeof( char ) * i );
+
+  try {
+    DWORD resive = 0;
+    if(FT_Read(ftHandle, bdata, (DWORD)i, &resive) != FT_OK) throw("FT_Read Failed");
+  }
+  catch(const char* str) {
+    std::cout << str << std::endl;
+    std::cout << "can't ClearReadMemory." << std::endl;
+  }
+
+  free(bdata);
+}
+
+
 void Dio::ledOn() {
   std::string result = "W0800000 ";
   result[8] = 0x0D;
@@ -48,8 +79,6 @@ void Dio::ledOff() {
 
 void Dio::sendCommandToDio(std::string command) {
   DWORD BytesWriten = 0;
-  //char *tmp = (char *)malloc( strlen(command.c_str()) + 1 );
-  std::cout << command << std::endl;
   try {
     if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
   }
@@ -58,7 +87,42 @@ void Dio::sendCommandToDio(std::string command) {
       std::cout << "can't connect" << std::endl;
   }
 }
-// std::string Dio::getPWMInitializeCommand();
+
+
+std::string Dio::getPWMInitializeCommand() {
+  int data = 0;
+  string result = "                  ";
+  int clockCode = 3;
+
+  // 23bit パルス周期およびクロック周波数の指定フラグ
+  data += 1 << 23;
+  // 22～20bit クロック周期の指定コード
+  data += clockCode << 20;
+  // 16bit チャンネルグループの指定
+  data += 0 << 16;
+  // 15～0bit パルス周期の指定
+  //data += (int)(pwmPalsePeriod / pwmClockPeriod - 1);
+  data += (int)(20000);
+
+  // コマンド文字列に変換しresultに追加する
+  result[0] = 'Q';
+  result[1] = PWM_DEVICE_ID;
+  string hexcode = toHex(data);
+  for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
+  result[8] = 0x0D;
+
+  // チャンネルグループを指定しなおす
+  data = (data | (1 << 16));
+
+  // コマンド文字列に変換しresultに追加する
+  result[9] = 'Q';
+  result[10] = PWM_DEVICE_ID;
+  hexcode = toHex(data);
+  for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
+  result[17] = 0x0D;
+
+  return result;
+}
 
 
 std::string Dio::getPWMStartCommand() {

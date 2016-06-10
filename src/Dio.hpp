@@ -10,15 +10,18 @@
 
 class Dio {
 public:
+  Dio();
+  ~Dio();
+
   void open();
   void close();
   // void changePWMPalse(int ch, int usec);
   // void changePWMPalse(vector<int> usecList);
-  // void clearReadMemory(int i);
+  void clearReadMemory(int i);
   void ledOn();
   void ledOff();
   void sendCommandToDio(std::string command);
-  // std::string getPWMInitializeCommand();
+  std::string getPWMInitializeCommand();
   std::string getPWMStartCommand();
 
 private:
@@ -26,6 +29,7 @@ private:
 
 private:
   FT_HANDLE ftHandle;
+  char PWM_DEVICE_ID;
 };
 
 #endif
