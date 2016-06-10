@@ -14,7 +14,7 @@ int main(void)
 	dio.open();
 
 	// pwm init
-	command = dio.getPWMInitializeCommand();
+	command = dio.getPWMInitializeCommand(3,2000);
 	dio.sendCommandToDio(command);
 
 	// pwm init pos

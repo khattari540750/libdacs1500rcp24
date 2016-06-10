@@ -42,9 +42,9 @@ void Dacs1500rcp24::close() {
 }
 
 
-std::string Dacs1500rcp24::getPWMInitializeCommand() {
-  int pwmCountClockID = 3;
-  int pwmPalsePeriod = 20000;
+std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmPalsePeriod) {
+  //int pwmCountClockID = 3;
+  //int pwmPalsePeriod = 20000;
   int data = 0;
   std::string result(18, ' ');
 

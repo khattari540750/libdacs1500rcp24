@@ -17,7 +17,7 @@ public:
   void open();
   void close();
 
-  std::string getPWMInitializeCommand();
+  std::string getPWMInitializeCommand(int pwmCountClockID, int pwmPalsePeriod);
   std::string getPWMStartCommand();
   std::string getPWMPalseChangeCommand(int ch, int usec);
   std::string getPWMPalseChangeCommand(std::vector<int> usecList);
