@@ -91,7 +91,7 @@ void Dio::sendCommandToDio(std::string command) {
 
 std::string Dio::getPWMInitializeCommand() {
   int data = 0;
-  string result = "                  ";
+  std::string result = "                  ";
   int clockCode = 3;
 
   // 23bit パルス周期およびクロック周波数の指定フラグ
@@ -107,7 +107,7 @@ std::string Dio::getPWMInitializeCommand() {
   // コマンド文字列に変換しresultに追加する
   result[0] = 'Q';
   result[1] = PWM_DEVICE_ID;
-  string hexcode = toHex(data);
+  std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
   result[8] = 0x0D;
 
