@@ -1,8 +1,10 @@
 #ifndef __libdacs1500rcp24__dacs1500rcp24__
 #define __libdacs1500rcp24__dacs1500rcp24__
 
+
 #include <iostream>
 #include <string>
+#include <vector>
 #include "ftd2xx.h"
 
 
@@ -10,13 +12,14 @@ class Dacs1500rcp24 {
 public:
   void open();
   void close();
+  std::string getChangePWMPalseCommand(int ch, int usec);
+  std::string getChangePWMPalseCommand(std::vector<int> usecList);
 
 protected:
   void sendCommandToDio(std::string command);
 
 private:
   std::string toHex(unsigned int x);
-
 
 protected:
   FT_HANDLE ftHandle;

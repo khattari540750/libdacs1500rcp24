@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "dacs1500rcp24.hpp"
 
 
@@ -28,6 +26,53 @@ void Dacs1500rcp24::close() {
     std::cout << str << std::endl;
     std::cout << "can't close dacs1500rcp24 device normal termination." << std::endl;
   }
+}
+
+
+std::string Dacs1500rcp24::getChangePWMPalseCommand(int ch, int usec) {
+  std::string bdata(9, ' ');
+  int c = 0;
+  unsigned int a = 0;
+  a += (ch < 12 ? 0 : 1) << 16;
+  a += (ch % 12) << 12;
+  a += (unsigned int)(usec);
+  std::string hex = toHex(a);
+  bdata[c++] = 'Q';
+  bdata[c++] = pwmDeviceID;
+  bdata[c++] = hex[0];
+  bdata[c++] = hex[1];
+  bdata[c++] = hex[2];
+  bdata[c++] = hex[3];
+  bdata[c++] = hex[4];
+  bdata[c++] = hex[5];
+  bdata[c++] = 0x0D;
+  sendCommandToDio(bdata);
+}
+
+
+std::string Dacs1500rcp24::getChangePWMPalseCommand(std::vector<int> usecList) {
+  std::string bdata(usecList.size()*9, ' ');
+  int c = 0;
+  unsigned int a = 0;
+
+  for (int i = 0; i < usecList.size(); i++) {
+    a = 0;
+    a += (i < 12 ? 0 : 1) << 16;
+    a += (i % 12) << 12;
+    a += usecList[i];
+    std::string hex = toHex(a);
+    bdata[c++] = 'Q';
+    bdata[c++] = pwmDeviceID;
+    bdata[c++] = hex[0];
+    bdata[c++] = hex[1];
+    bdata[c++] = hex[2];
+    bdata[c++] = hex[3];
+    bdata[c++] = hex[4];
+    bdata[c++] = hex[5];
+    bdata[c++] = '&';
+  }
+  bdata[c - 1] = 0x0D;
+  sendCommandToDio(bdata);
 }
 
 
