@@ -125,6 +125,7 @@ void Dio::sendCommandToDio(std::string command) {
   DWORD BytesWriten = 0;
   try {
     if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+    std::cout << command << std::endl;
   }
   catch(std::string str) {
       std::cout << str << std::endl;
