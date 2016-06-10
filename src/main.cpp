@@ -1,10 +1,48 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unistd.h>
 #include "dacs1500rcp24.hpp"
+
 
 int main(void)
 {
 	Dacs1500rcp24 dio;
+	std::string command;
+	std::vector<int> values;
 
 	dio.open();
+
+	// pwm init
+	command = dio.getPWMInitializeCommand();
+	dio.sendCommandToDio(command);
+
+	// pwm init pos
+	values.push_back(1450);
+	values.push_back(1450);
+	dio.changePWMPalse(values);
+	//dio.changePWMPalse(0, 1450);
+
+	// start
+	command = dio.getPWMStartCommand();
+	dio.sendCommandToDio(command);
+
+	// changePWM
+	for (int i=0; i<10; i++) {
+    sleep(1);
+    if(i%2==0) {
+			values[0] = 2400;
+			values[1] = 2400;
+			dio.changePWMPalse(values);
+			//dio.changePWMPalse(0,2400);
+		}
+    else {
+			values[0] = 500;
+			values[1] = 500;
+			dio.changePWMPalse(values);
+			//dio.changePWMPalse(0,500);
+		}
+	}
 
 
 	dio.close();
