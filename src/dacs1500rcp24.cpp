@@ -9,7 +9,7 @@ Dacs1500rcp24::Dacs1500rcp24() {
 Dacs1500rcp24::Dacs1500rcp24(int deviceID) {
   std::stringstream ss;
   ss << deviceID;
-  string str = ss.str();
+  std::string str = ss.str();
   deviceID = str[0];
 }
 
