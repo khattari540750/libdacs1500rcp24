@@ -19,7 +19,10 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 void Dacs1500rcp24::open() {
   try {
-    if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
+    std::stringstream ss;
+    int devID;
+    ss.str(deviceID) >> devID;
+    if(FT_Open(devID, &ftHandle) != FT_OK) throw("FT_Open Failed");
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
     std::cout << "open dacs1500rcp24 device." << std::endl;
@@ -73,7 +76,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
 
 
 std::string Dacs1500rcp24::getPWMStartCommand() {
-  std::string result = "Q000F000&Q001F000 ";
+  std::string result = "Q 00F000&Q001F000 ";
   result[1] = deviceID;
   result[17] = 0x0D;
   return result;
@@ -81,7 +84,7 @@ std::string Dacs1500rcp24::getPWMStartCommand() {
 
 
 std::string Dacs1500rcp24::getPWMStopCommand() {
-  std::string result = "Q000F000&Q001F000 ";
+  std::string result = "Q 00F000&Q001F000 ";
   result[1] = deviceID;
   result[17] = 0x0D;
   return result;
