@@ -40,7 +40,7 @@ void Dio::close() {
 
 
 void Dio::changePWMPalse(int ch, int usec) {
-  std::string bdata = "         ";
+  std::string bdata(9, ' ');
   int c = 0;
   unsigned int a = 0;
 
@@ -72,7 +72,6 @@ void Dio::changePWMPalse(std::vector<int> usecList) {
     a = 0;
     a += (i < 12 ? 0 : 1) << 16;
     a += (i % 12) << 12;
-
     a += usecList[i];
     std::string hex = toHex(a);
     bdata[c++] = 'Q';
@@ -136,7 +135,7 @@ void Dio::sendCommandToDio(std::string command) {
 
 std::string Dio::getPWMInitializeCommand() {
   int data = 0;
-  std::string result = "                  ";
+  std::string result(18, ' ');
   int clockCode = 3;
 
   // 23bit パルス周期およびクロック周波数の指定フラグ
