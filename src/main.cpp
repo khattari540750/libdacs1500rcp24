@@ -6,8 +6,9 @@ int main(void)
 
 	dio.open();
 
+
 	dio.close();
-	
+
 	return 0;
 }
 

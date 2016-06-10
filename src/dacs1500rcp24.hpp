@@ -11,12 +11,14 @@
 class Dacs1500rcp24 {
 public:
   Dacs1500rcp24();
+  Dacs1500rcp24(int deviceID);
   ~Dacs1500rcp24();
 
   void open();
   void close();
 
   std::string getPWMInitializeCommand();
+  std::string getPWMStartCommand();
   std::string getPWMPalseChangeCommand(int ch, int usec);
   std::string getPWMPalseChangeCommand(std::vector<int> usecList);
 
