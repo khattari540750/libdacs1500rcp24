@@ -1,4 +1,61 @@
-//#include "dacs1500rcp24.h"
+#include <iostream>
+#include <string>
+#include <vector>
+#include <unistd.h>
+#include "dacs1500rcp24.hpp"
+
+
+int main(void)
+{
+	Dacs1500rcp24 dio(0);
+	std::string command;
+	std::vector<int> values;
+
+	dio.open();
+
+	// pwm init
+	command = dio.getPWMInitializeCommand(3,20000);
+	dio.sendCommandToDio(command);
+
+	// pwm init pos
+	values.push_back(1450);
+	values.push_back(1450);
+	command = dio.getPWMPalseChangeCommand(values);
+	dio.sendCommandToDio(command);
+
+	// start
+	command = dio.getPWMStartCommand();
+	dio.sendCommandToDio(command);
+
+	// changePWM
+	for (int i=0; i<10; i++) {
+    sleep(1);
+    if(i%2==0) {
+			values[0] = 2400;
+			values[1] = 2400;
+			command = dio.getPWMPalseChangeCommand(values);
+			dio.sendCommandToDio(command);
+		}
+    else {
+			values[0] = 500;
+			values[1] = 500;
+			command = dio.getPWMPalseChangeCommand(values);
+			dio.sendCommandToDio(command);
+		}
+	}
+
+	// stop
+	command = dio.getPWMStopCommand();
+	dio.sendCommandToDio(command);
+
+	dio.close();
+
+	return 0;
+}
+
+
+
+/*
 #include "Dio.hpp"
 #include <unistd.h>
 #include <iostream>
@@ -14,8 +71,6 @@ int main(void)
 	dio.open();
 
 	dio.ledOn();
-	sleep(2);
-	dio.ledOff();
 	sleep(1);
 
 	// 初期化
@@ -49,102 +104,11 @@ int main(void)
 		}
 	}
 
-	dio.close();
-
-	return 0;
-
-
-
-
-
-
-	/*
-	Dio dio;
-	char *command;
-	int values[2];
-
-	dio.open();
-
-	dio.ledOn();
-	sleep(2);
-	dio.ledOff();
 	sleep(1);
-
-	// 初期化
-	command = dio.getPWMInitializeCommand();
-	std::cout << command << std::endl;
-	dio.sendCommandToDio(command);
-
-	//初期位置
-	values[0] = 1450;
-	values[1] = 1450;
-	dio.changePWMPalse(values);
-	//dio.changePWMPalse(0, 1450);
-
-	// start
-	command = dio.getPWMStartCommand();
-	std::cout << command << std::endl;
-	dio.sendCommandToDio(command);
-
-	// 位置変更
-	for (int i=0; i<10; i++) {
-    sleep(1);
-    if(i%2==0) {
-			values[0] = 2400;
-			values[1] = 2400;
-			dio.changePWMPalse(values);
-			//dio.changePWMPalse(0,2400);
-		}
-    else {
-			values[0] = 500;
-			values[1] = 500;
-			dio.changePWMPalse(values);
-			//dio.changePWMPalse(0,500);
-		}
-	}
-
+	dio.ledOff();
 
 	dio.close();
 
 	return 0;
-	*/
-
-
-
-
-
-
-
-	/*
-	char *code;
-
-	initDio();
-
-	// 初期化
-	code = getPWMInitializeCode();
-	printf("%s\n", code);
-	sendCommandCodeToDio(code);
-
-	// PWMパルス幅の初期位置設定
-	code = getPWMPalseChangeUsecCode(0,1450);
-	printf("%s\n", code);
-	sendCommandCodeToDio(code);
-
-	// PWM出力開始
-	code = getPWMStartCode();
-	printf("%s\n", code);
-	sendCommandCodeToDio(code);
-
-  // PWMパルス幅の変更 繰り返し
-  int i;
-  for (i=0; i<10; i++) {
-    sleep(1);
-    if(i%2==0) code = getPWMPalseChangeUsecCode(0,2400);
-    else code = getPWMPalseChangeUsecCode(0,500);
-  	printf("%s\n", code);
-  	sendCommandCodeToDio(code);
-  }
-
-	exitDio();
-	*/
 }
+*/
