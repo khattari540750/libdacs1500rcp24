@@ -24,7 +24,7 @@ private:
 protected:
   FT_HANDLE ftHandle;
   char pwmDeviceID;
-}
+};
 
 
 #endif
