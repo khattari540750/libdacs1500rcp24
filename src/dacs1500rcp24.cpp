@@ -30,49 +30,48 @@ void Dacs1500rcp24::close() {
 
 
 std::string Dacs1500rcp24::getChangePWMPalseCommand(int ch, int usec) {
-  std::string bdata(9, ' ');
+  std::string result(9, ' ');
   int c = 0;
   unsigned int a = 0;
   a += (ch < 12 ? 0 : 1) << 16;
   a += (ch % 12) << 12;
   a += (unsigned int)(usec);
   std::string hex = toHex(a);
-  bdata[c++] = 'Q';
-  bdata[c++] = pwmDeviceID;
-  bdata[c++] = hex[0];
-  bdata[c++] = hex[1];
-  bdata[c++] = hex[2];
-  bdata[c++] = hex[3];
-  bdata[c++] = hex[4];
-  bdata[c++] = hex[5];
-  bdata[c++] = 0x0D;
-  sendCommandToDio(bdata);
+  result[c++] = 'Q';
+  result[c++] = pwmDeviceID;
+  result[c++] = hex[0];
+  result[c++] = hex[1];
+  result[c++] = hex[2];
+  result[c++] = hex[3];
+  result[c++] = hex[4];
+  result[c++] = hex[5];
+  result[c++] = 0x0D;
+  return result;
 }
 
 
 std::string Dacs1500rcp24::getChangePWMPalseCommand(std::vector<int> usecList) {
-  std::string bdata(usecList.size()*9, ' ');
+  std::string result(usecList.size()*9, ' ');
   int c = 0;
   unsigned int a = 0;
-
   for (int i = 0; i < usecList.size(); i++) {
     a = 0;
     a += (i < 12 ? 0 : 1) << 16;
     a += (i % 12) << 12;
     a += usecList[i];
     std::string hex = toHex(a);
-    bdata[c++] = 'Q';
-    bdata[c++] = pwmDeviceID;
-    bdata[c++] = hex[0];
-    bdata[c++] = hex[1];
-    bdata[c++] = hex[2];
-    bdata[c++] = hex[3];
-    bdata[c++] = hex[4];
-    bdata[c++] = hex[5];
-    bdata[c++] = '&';
+    result[c++] = 'Q';
+    result[c++] = pwmDeviceID;
+    result[c++] = hex[0];
+    result[c++] = hex[1];
+    result[c++] = hex[2];
+    result[c++] = hex[3];
+    result[c++] = hex[4];
+    result[c++] = hex[5];
+    result[c++] = '&';
   }
-  bdata[c - 1] = 0x0D;
-  sendCommandToDio(bdata);
+  result[c - 1] = 0x0D;
+  return result;
 }
 
 
@@ -100,6 +99,8 @@ std::string Dacs1500rcp24::toHex(unsigned int x) {
   }
   return result;
 }
+
+
 
 
 
