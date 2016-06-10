@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include <string.h>
 #include <stdlib.h>
 #include "ftd2xx.h"
