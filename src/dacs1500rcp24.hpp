@@ -10,10 +10,16 @@
 
 class Dacs1500rcp24 {
 public:
+  Dacs1500rcp24();
+  ~Dacs1500rcp24();
+
   void open();
   void close();
-  std::string getChangePWMPalseCommand(int ch, int usec);
-  std::string getChangePWMPalseCommand(std::vector<int> usecList);
+
+  std::string getPWMInitializeCommand();
+  std::string getPWMPalseChangeCommand(int ch, int usec);
+  std::string getPWMPalseChangeCommand(std::vector<int> usecList);
+
   void sendCommandToDio(std::string command);
 
 private:
@@ -22,6 +28,8 @@ private:
 protected:
   FT_HANDLE ftHandle;
   char pwmDeviceID;
+  int pwmCountClockID;
+  int pwmPalsePeriod;
 };
 
 

@@ -1,10 +1,19 @@
 #include "dacs1500rcp24.hpp"
 
 
-void Dacs1500rcp24::open() {
+Dacs1500rcp24::Dacs1500rcp24() {
   pwmDeviceID = '0';
+  pwmCountClockID = 3;
+  pwmPalsePeriod = 2000;
+}
+
+
+Dacs1500rcp24::~Dacs1500rcp24() {}
+
+
+void Dacs1500rcp24::open() {
   try {
-    if(FT_Open(std::stoi(pwmDeviceID), &ftHandle) != FT_OK) throw("FT_Open Failed");
+    if(FT_Open(0, &ftHandle) != FT_OK) throw("FT_Open Failed");
     if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
     std::cout << "open dacs1500rcp24 device." << std::endl;
@@ -30,7 +39,38 @@ void Dacs1500rcp24::close() {
 }
 
 
-std::string Dacs1500rcp24::getChangePWMPalseCommand(int ch, int usec) {
+std::string Dacs1500rcp24::getPWMInitializeCommand() {
+  int data = 0;
+  std::string result(18, ' ');
+
+  // 23bit パルス周期およびクロック周波数の指定フラグ
+  data += 1 << 23;
+  // 22～20bit クロック周期の指定コード
+  data += pwmCountClockID << 20;
+  // 16bit チャンネルグループの指定
+  data += 0 << 16;
+  // 15～0bit パルス周期の指定
+  data += pwmPalsePeriod;
+
+  result[0] = 'Q';
+  result[1] = pwmDeviceID;
+  std::string hexcode = toHex(data);
+  for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
+  result[8] = 0x0D;
+
+  data = (data | (1 << 16));
+
+  result[9] = 'Q';
+  result[10] = pwmDeviceID;
+  hexcode = toHex(data);
+  for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
+  result[17] = 0x0D;
+
+  return result;
+}
+
+
+std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
   std::string result(9, ' ');
   int c = 0;
   unsigned int a = 0;
@@ -51,7 +91,7 @@ std::string Dacs1500rcp24::getChangePWMPalseCommand(int ch, int usec) {
 }
 
 
-std::string Dacs1500rcp24::getChangePWMPalseCommand(std::vector<int> usecList) {
+std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
   std::string result(usecList.size()*9, ' ');
   int c = 0;
   unsigned int a = 0;
