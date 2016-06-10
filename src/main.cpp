@@ -10,9 +10,9 @@ int main(void)
 
 	dio.open();
 
-	dio.lampOn();
+	dio.ledOn();
 	sleep(2);
-	dio.lampOff();
+	dio.ledOff();
 
 	dio.close();
 
