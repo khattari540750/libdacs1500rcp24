@@ -84,7 +84,7 @@ std::string Dacs1500rcp24::getPWMStartCommand() {
 
 
 std::string Dacs1500rcp24::getPWMStopCommand() {
-  std::string result = "Q 00F000&Q001F000 ";
+  std::string result = "Q 00E000&Q001E000 ";
   result[1] = charDeviceID;
   result[17] = 0x0D;
   return result;
