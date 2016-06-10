@@ -42,14 +42,11 @@ int main(void)
 			command = dio.getPWMPalseChangeCommand(values);
 			dio.sendCommandToDio(command);
 		}
-
-		if (i==6) {
-			sleep(1);
-			// stop
-			command = dio.getPWMStopCommand();
-			dio.sendCommandToDio(command);
-		}
 	}
+
+	// stop
+	command = dio.getPWMStopCommand();
+	dio.sendCommandToDio(command);
 
 	dio.close();
 
