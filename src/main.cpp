@@ -10,6 +10,10 @@ int main(void)
 
 	dio.open();
 
+	dio.lampOn();
+	sleep(2);
+	dio.lampOff();
+
 	dio.close();
 
 	return 0;
