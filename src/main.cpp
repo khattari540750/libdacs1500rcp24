@@ -14,8 +14,6 @@ int main(void)
 	dio.open();
 
 	dio.ledOn();
-	sleep(2);
-	dio.ledOff();
 	sleep(1);
 
 	// 初期化
@@ -48,6 +46,9 @@ int main(void)
 			//dio.changePWMPalse(0,500);
 		}
 	}
+
+	sleep(1);
+	dio.ledOff();
 
 	dio.close();
 

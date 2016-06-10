@@ -17,7 +17,7 @@ private:
   std::string toHex(unsigned int x);
 
 
-private:
+protected:
   FT_HANDLE ftHandle;
   char pwmDeviceID;
 }
