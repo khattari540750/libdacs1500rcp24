@@ -1,6 +1,13 @@
 #ifndef __libdacs1500rcp24__dacs1500rcp24__
 #define __libdacs1500rcp24__dacs1500rcp24__
 
+#endif
+
+
+/*
+#ifndef __libdacs1500rcp24__dacs1500rcp24__
+#define __libdacs1500rcp24__dacs1500rcp24__
+
 #include <stdio.h>
 #include <string.h>
 #include "ftd2xx.h"
@@ -21,7 +28,7 @@ char *toCommandCode(unsigned int);
 void connectCommandCode(char*, char*);
 char *toHex(unsigned int);
 
-FT_HANDLE ftHandle;
-FT_STATUS ftStatus;
+
 
 #endif
+*/
