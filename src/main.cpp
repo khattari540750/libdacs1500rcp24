@@ -43,7 +43,7 @@ int main(void)
 			dio.sendCommandToDio(command);
 		}
 
-		if i>6 {
+		if (i==6) {
 			sleep(1);
 			// stop
 			command = dio.getPWMStopCommand();
