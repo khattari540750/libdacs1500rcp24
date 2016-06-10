@@ -2,6 +2,25 @@
 #define __libdacs1500rcp24__dacs1500rcp24__
 
 
+#include "ftd2xx.h"
+
+
+class Dacs1500rcp24 {
+public:
+  void open();
+  void close();
+
+protected:
+
+
+private:
+  std::string toHex(unsigned int x);
+
+
+private:
+  FT_HANDLE ftHandle;
+  char pwmDeviceID;
+}
 
 
 #endif
