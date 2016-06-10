@@ -30,7 +30,7 @@ private:
 
 private:
   FT_HANDLE ftHandle;
-  char PWM_DEVICE_ID;
+  char pwmDeviceID;
 };
 
 #endif

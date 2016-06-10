@@ -2,7 +2,7 @@
 
 
 Dio::Dio() {
-  PWM_DEVICE_ID = '0';
+  pwmDeviceID = '0';
 }
 
 
@@ -51,7 +51,7 @@ void Dio::changePWMPalse(int ch, int usec) {
   a += (unsigned int)(usec);
   std::string hex = toHex(a);
   bdata[c++] = 'Q';
-  bdata[c++] = PWM_DEVICE_ID;
+  bdata[c++] = pwmDeviceID;
   bdata[c++] = hex[0];
   bdata[c++] = hex[1];
   bdata[c++] = hex[2];
@@ -75,7 +75,7 @@ void Dio::changePWMPalse(std::vector<int> usecList) {
     a += usecList[i];
     std::string hex = toHex(a);
     bdata[c++] = 'Q';
-    bdata[c++] = PWM_DEVICE_ID;
+    bdata[c++] = pwmDeviceID;
     bdata[c++] = hex[0];
     bdata[c++] = hex[1];
     bdata[c++] = hex[2];
@@ -149,7 +149,7 @@ std::string Dio::getPWMInitializeCommand() {
   data += (int)(20000);
 
   result[0] = 'Q';
-  result[1] = PWM_DEVICE_ID;
+  result[1] = pwmDeviceID;
   std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
   result[8] = 0x0D;
@@ -157,7 +157,7 @@ std::string Dio::getPWMInitializeCommand() {
   data = (data | (1 << 16));
 
   result[9] = 'Q';
-  result[10] = PWM_DEVICE_ID;
+  result[10] = pwmDeviceID;
   hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
   result[17] = 0x0D;

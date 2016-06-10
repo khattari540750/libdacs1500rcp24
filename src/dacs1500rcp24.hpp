@@ -1,7 +1,42 @@
 #ifndef __libdacs1500rcp24__dacs1500rcp24__
 #define __libdacs1500rcp24__dacs1500rcp24__
 
+
+
+
 #endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
