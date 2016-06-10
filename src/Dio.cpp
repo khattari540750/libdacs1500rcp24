@@ -51,6 +51,7 @@ void Dio::sendCommandToDio(std::string command) {
   char *tmp = (char *)malloc( strlen(command.c_str()) + 1 );
   try {
     if (FT_Write(ftHandle, tmp,  strlen(tmp), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+    cout << tmp << endl;
   }
   catch(std::string str) {
       std::cout << str << std::endl;
