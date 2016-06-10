@@ -13,6 +13,14 @@ int main(void)
 
 	dio.open();
 
+	// lamp on -> off
+	command = dio.getDigitalOutPutCommand("800000");
+	dio.sendCommandToDio(command);
+	sleep(2);
+	command = dio.getDigitalOutPutCommand("000000");
+	dio.sendCommandToDio(command);
+
+
 	// pwm init
 	command = dio.getPWMInitializeCommand(3,20000);
 	dio.sendCommandToDio(command);
