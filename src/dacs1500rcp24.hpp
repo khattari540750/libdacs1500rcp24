@@ -28,8 +28,6 @@ private:
 protected:
   FT_HANDLE ftHandle;
   char pwmDeviceID;
-  int pwmCountClockID;
-  int pwmPalsePeriod;
 };
 
 
