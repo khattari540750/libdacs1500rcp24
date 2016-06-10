@@ -43,15 +43,13 @@ void Dacs1500rcp24::close() {
 
 
 std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmPalsePeriod) {
-  //int pwmCountClockID = 3;
-  //int pwmPalsePeriod = 20000;
   int data = 0;
   std::string result(18, ' ');
 
-  data += 1 << 23; // 23bit パルス周期およびクロック周波数の指定フラグ
-  data += pwmCountClockID << 20; // 22～20bit クロック周期の指定コード
-  data += 0 << 16; // 16bit チャンネルグループの指定
-  data += pwmPalsePeriod; // 15～0bit パルス周期の指定
+  data += 1 << 23;
+  data += pwmCountClockID << 20;
+  data += 0 << 16;
+  data += pwmPalsePeriod;
 
   result[0] = 'Q';
   result[1] = deviceID;
@@ -72,6 +70,14 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
 
 
 std::string Dacs1500rcp24::getPWMStartCommand() {
+  std::string result = "Q000F000&Q001F000 ";
+  result[1] = deviceID;
+  result[17] = 0x0D;
+  return result;
+}
+
+
+std::string Dacs1500rcp24::getPWMStopCommand() {
   std::string result = "Q000F000&Q001F000 ";
   result[17] = 0x0D;
   return result;
