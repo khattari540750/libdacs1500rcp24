@@ -31,6 +31,17 @@ void Dacs1500rcp24::close() {
 }
 
 
+void Dacs1500rcp24::sendCommandToDio(std::string command) {
+  DWORD BytesWriten = 0;
+  try {
+    if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+  }
+  catch(std::string str) {
+      std::cout << str << std::endl;
+      std::cout << "can't connect" << std::endl;
+  }
+}
+
 
 std::string Dacs1500rcp24::toHex(unsigned int x) {
   std::string result(6, ' ');

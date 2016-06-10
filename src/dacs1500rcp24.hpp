@@ -1,7 +1,8 @@
 #ifndef __libdacs1500rcp24__dacs1500rcp24__
 #define __libdacs1500rcp24__dacs1500rcp24__
 
-
+#include <iostream>
+#include <string>
 #include "ftd2xx.h"
 
 
@@ -11,7 +12,7 @@ public:
   void close();
 
 protected:
-
+  void sendCommandToDio(std::string command);
 
 private:
   std::string toHex(unsigned int x);

@@ -31,6 +31,7 @@ private:
 private:
   FT_HANDLE ftHandle;
   char pwmDeviceID;
+  
 };
 
 #endif
