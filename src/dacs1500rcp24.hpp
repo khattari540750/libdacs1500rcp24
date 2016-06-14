@@ -26,7 +26,7 @@ public:
 
   std::string getDigitalOutPutCommand(std::string bitStrings);
 
-  void sendCommandToDio(std::string command);
+  void sendCommand(std::string command);
 
 private:
   std::string toHex(unsigned int x);

@@ -153,7 +153,7 @@ std::string Dacs1500rcp24::getDigitalOutPutCommand(std::string bitStrings) {
 }
 
 
-void Dacs1500rcp24::sendCommandToDio(std::string command) {
+void Dacs1500rcp24::sendCommand(std::string command) {
   DWORD BytesWriten = 0;
   try {
     if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
