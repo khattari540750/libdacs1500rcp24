@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "dacs1500rcp24.hpp"
 
-#define PWM_CHANNEL_NUM 2
+#define PWM_CHANNEL_NUM 12
 
 int main(void)
 {
