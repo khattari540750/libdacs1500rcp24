@@ -27,8 +27,7 @@ int main(void)
 	dio.sendCommand(command);
 
 	// pwm init pos
-	values.push_back(1450);
-	values.push_back(1450);
+	for(int i=0; i<24; i++) values.push_back(1450);
 	command = dio.getPWMPalseChangeCommand(values);
 	dio.sendCommand(command);
 
@@ -40,14 +39,12 @@ int main(void)
 	for (int i=0; i<10; i++) {
     sleep(1);
     if(i%2==0) {
-			values[0] = 2400;
-			values[1] = 2400;
+			for(int i=0; i<24; i++) values[i] = 2400;
 			command = dio.getPWMPalseChangeCommand(values);
 			dio.sendCommand(command);
 		}
     else {
-			values[0] = 500;
-			values[1] = 500;
+			for(int i=0; i<24; i++) values[i] = 500;
 			command = dio.getPWMPalseChangeCommand(values);
 			dio.sendCommand(command);
 		}
