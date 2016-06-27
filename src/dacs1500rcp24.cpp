@@ -43,8 +43,8 @@ void Dacs1500rcp24::open() {
 
 
 void Dacs1500rcp24::close() {
-  if(FT_ResetDevice(ftHandle);
-  if(FT_Close(ftHandle);
+  FT_ResetDevice(ftHandle);
+  FT_Close(ftHandle);
   std::cout << "close dacs1500rcp24 device." << std::endl;
 
 
