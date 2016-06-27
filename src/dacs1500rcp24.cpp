@@ -22,23 +22,23 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 void Dacs1500rcp24::open() {
 
-  FT_Open(intDeviceID, &ftHandle);
-  FT_ResetDevice(ftHandle);
-  FT_SetTimeouts(ftHandle, 1000, 1000);
-  std::cout << "open dacs1500rcp24 device." << std::endl;
+  // FT_Open(intDeviceID, &ftHandle);
+  // FT_ResetDevice(ftHandle);
+  // FT_SetTimeouts(ftHandle, 1000, 1000);
+  // std::cout << "open dacs1500rcp24 device." << std::endl;
 
 
-  // try {
-  //   if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
-  //   if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
-  //   if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
-  //   std::cout << "open dacs1500rcp24 device." << std::endl;
-  // }
-  // catch(std::string str) {
-  //   FT_Close(ftHandle);
-  //   std::cout << "can't open dacs1500rcp24 device." << std::endl;
-  //   std::cout << str << std::endl;
-  // }
+  try {
+    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
+    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
+    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
+    std::cout << "open dacs1500rcp24 device." << std::endl;
+  }
+  catch(std::string str) {
+    FT_Close(ftHandle);
+    std::cout << "can't open dacs1500rcp24 device." << std::endl;
+    std::cout << str << std::endl;
+  }
 }
 
 
