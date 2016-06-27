@@ -34,7 +34,7 @@ void Dacs1500rcp24::open() {
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
     std::cout << "open dacs1500rcp24 device." << std::endl;
   }
-  catch(std::string const str) {
+  catch(char const *str) {
     FT_Close(ftHandle);
     std::cout << "can't open dacs1500rcp24 device." << std::endl;
     std::cout << str << std::endl;
