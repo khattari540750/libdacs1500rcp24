@@ -21,30 +21,43 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 
 void Dacs1500rcp24::open() {
-  try {
-    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
-    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
-    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
-    std::cout << "open dacs1500rcp24 device." << std::endl;
-  }
-  catch(std::string str) {
-    FT_Close(ftHandle);
-    std::cout << "can't open dacs1500rcp24 device." << std::endl;
-    std::cout << str << std::endl;
-  }
+
+  FT_Open(intDeviceID, &ftHandle);
+  FT_ResetDevice(ftHandle);
+  FT_SetTimeouts(ftHandle, 1000, 1000);
+  std::cout << "open dacs1500rcp24 device." << std::endl;
+
+
+  // try {
+  //   if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
+  //   if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
+  //   if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
+  //   std::cout << "open dacs1500rcp24 device." << std::endl;
+  // }
+  // catch(std::string str) {
+  //   FT_Close(ftHandle);
+  //   std::cout << "can't open dacs1500rcp24 device." << std::endl;
+  //   std::cout << str << std::endl;
+  // }
 }
 
 
 void Dacs1500rcp24::close() {
-  try {
-    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
-    if(FT_Close(ftHandle) != FT_OK) throw("FT_Close Failed");
-    std::cout << "close dacs1500rcp24 device." << std::endl;
-  }
-  catch(std::string str) {
-    std::cout << str << std::endl;
-    std::cout << "can't close dacs1500rcp24 device normal termination." << std::endl;
-  }
+  if(FT_ResetDevice(ftHandle);
+  if(FT_Close(ftHandle);
+  std::cout << "close dacs1500rcp24 device." << std::endl;
+
+
+
+  // try {
+  //   if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
+  //   if(FT_Close(ftHandle) != FT_OK) throw("FT_Close Failed");
+  //   std::cout << "close dacs1500rcp24 device." << std::endl;
+  // }
+  // catch(std::string str) {
+  //   std::cout << str << std::endl;
+  //   std::cout << "can't close dacs1500rcp24 device normal termination." << std::endl;
+  // }
 }
 
 
@@ -155,14 +168,20 @@ std::string Dacs1500rcp24::getDigitalOutPutCommand(std::string bitStrings) {
 
 void Dacs1500rcp24::sendCommand(std::string command) {
   DWORD BytesWriten = 0;
-  try {
-    if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
-    std::cout << command << std::endl;
-  }
-  catch(std::string str) {
-      std::cout << str << std::endl;
-      std::cout << "can't connect" << std::endl;
-  }
+
+  FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten);
+  std::cout << command << std::endl;
+
+
+
+  // try {
+  //   if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+  //   std::cout << command << std::endl;
+  // }
+  // catch(std::string str) {
+  //     std::cout << str << std::endl;
+  //     std::cout << "can't connect" << std::endl;
+  // }
 }
 
 
